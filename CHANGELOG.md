@@ -1,3 +1,3 @@
- - Added navigation
- - Introduced styles to components
- - Implemented TodoItem
+ - Added `TestScreen`
+ - Reworked `TodoItem`
+ - Simplified `TodoList`

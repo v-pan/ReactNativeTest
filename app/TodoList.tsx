@@ -9,7 +9,7 @@ export class TodoList extends Component {
 
     render() {
         return(
-            <ScrollView style={styles.container}>
+            <ScrollView>
                 <FlatList data={todoStore.todo}
 
                 renderItem={
@@ -22,12 +22,5 @@ export class TodoList extends Component {
         );
     }
 }
-
-const styles = StyleSheet.create({
-    container: {
-        height: 200,
-        backgroundColor: "grey"
-    }
-})
 
 AppRegistry.registerComponent("ReactNativeTest", () => TodoList)

@@ -1,9 +1,11 @@
 import { createStackNavigator, createAppContainer } from 'react-navigation'
 import TodoScreen from './app/TodoScreen';
+import TestScreen from './app/TestScreen'
 import React, { Component } from 'react';
 
 const AppNavigator = createStackNavigator({
-    Home: TodoScreen
+    Home: TodoScreen,
+    Test: TestScreen
 }, {
     initialRouteName: "Home"
 })

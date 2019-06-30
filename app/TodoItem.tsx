@@ -11,22 +11,18 @@ export default class TodoItem extends Component<IProps> {
     render() {
         return(
             <View style={styles.root}>
-                <View style={styles.aside}>
-                    <Switch
-                        style={{
-                            flex:1
-                        }}
-                    ></Switch>
+                <View style={styles.header}>
+                    <Switch style={styles.aside} />
 
                     <Text style={styles.title}>
                         {this.props.title}
                     </Text>
                 </View>
                 <View style={styles.body}>
-                    <View>
-                        <Text>
-                            Placeholder content
-                        </Text>
+                    <View style={styles.aside}>{/* Hacky solution to implement a <span> like element */}</View>
+
+                    <View style={styles.content}>
+                        <Text>Placeholder textPlaceholder textPlaceholder textPlaceholder textPlaceholder textPlaceholder textPlaceholder textPlaceholder textPlaceholder textPlaceholder textPlaceholder text</Text>
                     </View>
                 </View>
             </View>
@@ -39,6 +35,12 @@ const styles = StyleSheet.create({
         flexDirection: 'column',
         padding: 5
     },
+    header: {
+        flexDirection: 'row'
+    },
+    body: {
+        flexDirection: 'row'
+    },
     title: {
         flex: 4,
         fontSize: 30,
@@ -47,9 +49,10 @@ const styles = StyleSheet.create({
     aside: {
         flex: 1,
         justifyContent: "center",
-        alignItems: "center"
+        alignItems: "center",
+        width: "100%"
     },
-    body: {
+    content: {
         flexDirection: 'column',
         flex: 4
     }

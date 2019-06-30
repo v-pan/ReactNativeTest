@@ -7,24 +7,27 @@ import TodoItem from './TodoItem';
 @observer
 export class TodoList extends Component {
 
-  render() {
-    return(
-      <ScrollView style={{height: 200, backgroundColor: "grey"}}>
-        <FlatList data={todoStore.todo}
+    render() {
+        return(
+            <ScrollView style={styles.container}>
+                <FlatList data={todoStore.todo}
 
-          renderItem={
-            ({item}) => <TodoItem title={item.title} />
-          }
-          keyExtractor={(item, index) => index.toString()}
+                renderItem={
+                    ({item}) => <TodoItem title={item.title} />
+                }
+                keyExtractor={(item, index) => index.toString()}
 
-        />
-      </ScrollView>
-    );
-  }
+                />
+            </ScrollView>
+        );
+    }
 }
 
 const styles = StyleSheet.create({
-
+    container: {
+        height: 200,
+        backgroundColor: "grey"
+    }
 })
 
 AppRegistry.registerComponent("ReactNativeTest", () => TodoList)

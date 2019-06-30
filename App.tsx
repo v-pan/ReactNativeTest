@@ -1,21 +1,17 @@
-import React from 'react';
-import { StyleSheet, View, StatusBar } from 'react-native';
-import { TodoList } from './app/TodoList'
-import { TodoInput } from './app/TodoInput';
-import { observable } from 'mobx';
+import { createStackNavigator, createAppContainer } from 'react-navigation'
+import TodoScreen from './app/TodoScreen';
+import React, { Component } from 'react';
 
-export default function App() {
-  return (
-    <View style={styles.container}>
-      <TodoInput />
-      <TodoList />
-    </View>
-  );
-}
+const AppNavigator = createStackNavigator({
+    Home: TodoScreen
+}, {
+    initialRouteName: "Home"
+})
 
-const styles = StyleSheet.create({
-    container: {
-        paddingTop: StatusBar.currentHeight,
-        margin: 20
+const AppContainer = createAppContainer(AppNavigator)
+
+export default class App extends Component {
+    render() {
+        return <AppContainer />
     }
-});
+}

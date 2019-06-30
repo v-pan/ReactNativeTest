@@ -1,0 +1,3 @@
+ - Added navigation
+ - Introduced styles to components
+ - Implemented TodoItem

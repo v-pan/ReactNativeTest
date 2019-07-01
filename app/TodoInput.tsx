@@ -9,19 +9,20 @@ export class TodoInput extends Component {
 
     constructor(props) {
         super(props)
-        this.onChange = this.onChange.bind(this)
+        this.onTitleChange = this.onTitleChange.bind(this)
         this.onPress = this.onPress.bind(this)
     }
 
     @observable titleInput = ""
 
-    @action onChange(event) {
+    @action onTitleChange(event) {
         this.titleInput = event.nativeEvent.text
     }
 
     @action onPress() {
-        if(this.titleInput != "") {
-            todoStore.addTodo(this.titleInput, false)
+        const value = this.titleInput.trim()
+        if(value != "") {
+            todoStore.addTodo(value, false)
             this.titleInput = ""
         }
     }
@@ -33,8 +34,18 @@ export class TodoInput extends Component {
                     <TextInput
                         placeholder="Todo title"
                         value={this.titleInput}
-                        onChange={this.onChange}
+                        onChange={this.onTitleChange}
+                        style={styles.input}
                     />
+
+                    <View style={styles.divider} />
+
+                    <TextInput
+                        placeholder="Todo description"
+                        multiline={true}
+                        style={styles.input}
+                    >
+                    </TextInput>
                 </View>
 
                 <View style={styles.divider} />
@@ -53,13 +64,17 @@ export class TodoInput extends Component {
 
 const styles = StyleSheet.create({
     root: {
-        width: "50%"
+        flex: 1
     },
     inputView: {
-        backgroundColor: "grey"
+
     },
     divider: {
-        paddingVertical: 5
+        marginBottom: 10
+    },
+    input: {
+        backgroundColor: "grey",
+        maxHeight: 180
     }
 })
 

@@ -1,21 +1,38 @@
 import React, { Component } from 'react';
 import { View, AppRegistry, Text, StyleSheet, Switch } from 'react-native';
 import { observer } from 'mobx-react';
+import { Todo } from './todo';
+import { action } from 'mobx';
+import { todoStore } from './todoStore';
 
 interface IProps{
-    title: string
+    todo: Todo
 }
 
 @observer
 export default class TodoItem extends Component<IProps> {
+
+    constructor(props) {
+        super(props)
+        this.onValueChange = this.onValueChange.bind(this)
+    }
+
+    @action onValueChange() {
+        todoStore.toggleCompleted(this.props.todo)
+    }
+
     render() {
         return(
             <View style={styles.root}>
                 <View style={styles.header}>
-                    <Switch style={styles.aside} />
+                    <Switch 
+                        style={styles.aside}
+                        value={this.props.todo.completed}
+                        onValueChange={this.onValueChange}
+                    />
 
                     <Text style={styles.title}>
-                        {this.props.title}
+                        {this.props.todo.title}
                     </Text>
                 </View>
                 <View style={styles.body}>

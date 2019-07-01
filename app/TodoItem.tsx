@@ -39,7 +39,7 @@ export default class TodoItem extends Component<IProps> {
                     <View style={styles.aside}>{/* Hacky solution to implement a <span> like element */}</View>
 
                     <View style={styles.content}>
-                        <Text>Placeholder textPlaceholder textPlaceholder textPlaceholder textPlaceholder textPlaceholder textPlaceholder textPlaceholder textPlaceholder textPlaceholder textPlaceholder text</Text>
+                        <Text>{this.props.todo.description}</Text>
                     </View>
                 </View>
             </View>
@@ -66,8 +66,7 @@ const styles = StyleSheet.create({
     aside: {
         flex: 1,
         justifyContent: "center",
-        alignItems: "center",
-        width: "100%"
+        alignItems: "center"
     },
     content: {
         flexDirection: 'column',

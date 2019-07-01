@@ -10,20 +10,28 @@ export class TodoInput extends Component {
     constructor(props) {
         super(props)
         this.onTitleChange = this.onTitleChange.bind(this)
+        this.onDescriptionChange = this.onDescriptionChange.bind(this)
         this.onPress = this.onPress.bind(this)
     }
 
-    @observable titleInput = ""
+    @observable titleValue = ""
+    @observable descriptionValue = ""
 
     @action onTitleChange(event) {
-        this.titleInput = event.nativeEvent.text
+        this.titleValue = event.nativeEvent.text
+    }
+
+    @action onDescriptionChange(event) {
+        this.descriptionValue = event.nativeEvent.text
     }
 
     @action onPress() {
-        const value = this.titleInput.trim()
-        if(value != "") {
-            todoStore.addTodo(value, false)
-            this.titleInput = ""
+        const titleValue = this.titleValue.trim()
+        const descriptionValue = this.descriptionValue.trim()
+        if(titleValue != "") {
+            todoStore.addTodo(titleValue, descriptionValue, false)
+            this.titleValue = ""
+            this.descriptionValue = ""
         }
     }
 
@@ -33,24 +41,31 @@ export class TodoInput extends Component {
                 <View style={styles.inputView}>
                     <TextInput
                         placeholder="Todo title"
-                        value={this.titleInput}
+
+                        value={this.titleValue}
                         onChange={this.onTitleChange}
-                        style={styles.input}
+
+                        style={styles.titleInput}
                     />
 
                     <View style={styles.divider} />
 
                     <TextInput
                         placeholder="Todo description"
+
+                        value={this.descriptionValue}
+                        onChange={this.onDescriptionChange}
+
                         multiline={true}
-                        style={styles.input}
+                        numberOfLines={3}
+                        style={styles.descriptionInput}
                     >
                     </TextInput>
                 </View>
 
                 <View style={styles.divider} />
 
-                <View>
+                <View style={{flex:1}}>
                     <Button
                         title="Add Todo"
                         onPress={this.onPress}
@@ -67,14 +82,21 @@ const styles = StyleSheet.create({
         flex: 1
     },
     inputView: {
-
+        flex: 1
     },
     divider: {
         marginBottom: 10
     },
-    input: {
+    titleInput: {
         backgroundColor: "grey",
-        maxHeight: 180
+        maxHeight: 180,
+        fontSize: 20,
+        lineHeight: 30
+    },
+    descriptionInput: {
+        backgroundColor: "grey",
+        maxHeight: 180,
+        lineHeight: 20
     }
 })
 

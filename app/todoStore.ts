@@ -13,8 +13,8 @@ class TodoStore {
     @observable todoList: Todo[]
     @observable state = "pending"
 
-    @action addTodo(title: string, completed: boolean) {
-        this.todoList.push(new Todo(title, completed))
+    @action addTodo(title: string, description: string, completed: boolean) {
+        this.todoList.push(new Todo(title, description, completed))
         this.storeData()
     }
 
@@ -33,14 +33,15 @@ class TodoStore {
             const value = yield AsyncStorage.getItem(_storageKey)
             if(value !== null) {
                 JSON.parse(value).forEach((element: Todo) => {
-                    this.todoList.push(new Todo(element.title, element.completed))
+                    this.todoList.push(new Todo(element.title, element.description, element.completed))
                 });
             }
             this.state = "done"
             console.log("Fetched:", value)
         } catch(e) {
             this.state = "error"
-            console.log("Error getting data!")
+            console.log("Error getting data!");
+            console.error(e)
         }
     })
 

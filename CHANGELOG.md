@@ -1,10 +1,7 @@
-# Introduced AsyncStorage
+# Included description property to `Todo`s
 
- - Created getData and setData functions in `TodoStore`
- - Created component `InputScreen` and removed `<TodoInput/>` from `TodoScreen`
- - Made `TodoItem` be able to toggle "completed" switch
- - Cleaned up some unused imports
- - Introduced trimming of input strings
-
-# TODO:
- - Store and display descriptions of todo items (replace the placeholder)
+ - `todo.ts` now includes new property `description`
+ - `TodoInput` now handles `onTitleChange()` and `onDescriptionChange()`
+ - `TodoItem` now renders the passed `todo`'s description
+ - `todoStore` now saves and fetches the description of serialised todos
+ - Small refactor inside `TodoInput` to facilitate the new value
